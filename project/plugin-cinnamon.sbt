@@ -1,4 +1,4 @@
-// see: https://developer.lightbend.com/docs/monitoring
+// see: https://developer.lightbend.com/docs/monitoring/latest/home.html
 addSbtPlugin("com.lightbend.cinnamon" % "sbt-cinnamon" % "2.2.3")
 
 // to create your '.credentials' file: https://developer.lightbend.com/docs/reactive-platform/2.0/setup/setup-sbt.html
