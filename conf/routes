@@ -1,0 +1,14 @@
+
+GET           /api-docs              controllers.ApiHelpController.getResources
+GET           /api-docs/*path        controllers.ApiHelpController.getResource(path: String)
+  
+
+GET /api/info com.github.dnvriend.component.info.controller.BuildInfoController.info
+    
+
+GET /api/ping com.github.dnvriend.component.ping.controller.PingController.ping
+    
+
+GET /api/health com.github.dnvriend.component.health.controller.HealthController.check
+
+GET /api/failure com.github.dnvriend.component.health.controller.HealthController.checkWithFailure    
