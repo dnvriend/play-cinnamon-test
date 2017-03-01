@@ -1,3 +1,6 @@
+// https://github.com/typesafehub/sbt-conductr
+addSbtPlugin("com.lightbend.conductr" % "sbt-conductr" % "2.3.0")
+
 // see: https://developer.lightbend.com/docs/monitoring/latest/home.html
 addSbtPlugin("com.lightbend.cinnamon" % "sbt-cinnamon" % "2.2.4")
 
@@ -7,14 +10,3 @@ addSbtPlugin("com.lightbend.cinnamon" % "sbt-cinnamon" % "2.2.4")
 credentials += Credentials(Path.userHome / ".lightbend" / "commercial.credentials")
 
 resolvers += Resolver.url("lightbend-commercial", url("https://repo.lightbend.com/commercial-releases"))(Resolver.ivyStylePatterns)
-
-/**
- * Create a file in ~/.lightbend/commercial.credentials
- *
- * Add the following lines
- *
- * realm = Bintray
- * host = dl.bintray.com
- * user = <your very long userid@lightbend here>
- * password = <your very long password here>
- */

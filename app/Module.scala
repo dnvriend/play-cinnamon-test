@@ -14,11 +14,28 @@
  * limitations under the License.
  */
 
-package com.github.dnvriend
-
-import com.google.inject.AbstractModule
+import akka.actor.ActorSystem
+import akka.util.Timeout
+import com.github.dnvriend.component.actor.{ BarActor, FooActor }
+import com.github.dnvriend.component.info.controller.MyActor
+import com.google.inject.{ AbstractModule, Provides }
+import com.lightbend.cinnamon.akka.{ Tracer, TracerExtension }
 import play.api.libs.concurrent.AkkaGuiceSupport
 
+import scala.concurrent.duration._
+
 class Module extends AbstractModule with AkkaGuiceSupport {
-  override def configure(): Unit = ()
+  override def configure(): Unit = {
+    bindActor[MyActor]("myActor")
+    bindActor[BarActor]("barActor")
+    bindActor[FooActor]("fooActor")
+
+    bind(classOf[Timeout])
+      .toInstance(10.seconds)
+  }
+
+  @Provides
+  def tracer(system: ActorSystem): TracerExtension = {
+    Tracer(system)
+  }
 }

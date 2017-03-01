@@ -18,14 +18,10 @@ package com.github.dnvriend.component.ping.controller
 
 import play.api.mvc.{ Action, Controller }
 import org.slf4j.{ Logger, LoggerFactory }
-import io.swagger.annotations._
 
-@Api(value = "/api/ping")
 class PingController extends Controller {
   val log: Logger = LoggerFactory.getLogger(this.getClass)
 
-  @ApiOperation(value = "Endpoint for ping", response = classOf[String], httpMethod = "GET")
-  @ApiResponses(Array(new ApiResponse(code = 200, message = "pong")))
   def ping = Action { request =>
     log.debug(s"Received ping from ${request.remoteAddress}")
     Ok("pong")

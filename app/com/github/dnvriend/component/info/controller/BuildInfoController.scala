@@ -19,7 +19,6 @@ package com.github.dnvriend.component.info.controller
 import play.api.http.ContentTypes
 import play.api.mvc.{ Action, Controller }
 import org.slf4j.{ Logger, LoggerFactory }
-import io.swagger.annotations._
 import akka.actor._
 import javax.inject._
 
@@ -35,15 +34,9 @@ class MyActor extends Actor {
   }
 }
 
-@Api(value = "/api/info")
-class BuildInfoController @Inject() (system: ActorSystem) extends Controller {
+class BuildInfoController @Inject() (@Named("myActor") ref: ActorRef) extends Controller {
   val log: Logger = LoggerFactory.getLogger(this.getClass)
 
-  val ref = system.actorOf(Props[MyActor])
-  (1 to 500).foreach(i => ref ! s"hello-$i")
-
-  @ApiOperation(value = "Endpoint for BuildInfo", response = classOf[String], httpMethod = "GET")
-  @ApiResponses(Array(new ApiResponse(code = 200, message = "BuildInfo")))
   def info = Action { request =>
     ref ! "Hello from request"
     log.debug(s"Received buildinfo from ${request.remoteAddress}")
